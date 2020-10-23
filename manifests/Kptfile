@@ -11,3 +11,23 @@ openAPI:
         setter:
           name: replicas
           value: "1"
+    io.k8s.cli.substitutions.image-value:
+      x-k8s-cli:
+        substitution:
+          name: image-value
+          pattern: ${IMAGE_SETTER}:${TAG_SETTER}
+          values:
+          - marker: ${IMAGE_SETTER}
+            ref: '#/definitions/io.k8s.cli.setters.IMAGE_SETTER'
+          - marker: ${TAG_SETTER}
+            ref: '#/definitions/io.k8s.cli.setters.TAG_SETTER'
+    io.k8s.cli.setters.IMAGE_SETTER:
+      x-k8s-cli:
+        setter:
+          name: IMAGE_SETTER
+          value: nginx
+    io.k8s.cli.setters.TAG_SETTER:
+      x-k8s-cli:
+        setter:
+          name: TAG_SETTER
+          value: 1.14.2
